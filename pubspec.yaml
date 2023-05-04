@@ -1,6 +1,6 @@
 name: ercode_cli
 description: Flutter app generator
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/xrb21/ercode_cli
 
 environment:
