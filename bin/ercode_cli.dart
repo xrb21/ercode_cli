@@ -6,10 +6,10 @@ import 'package:ercode_cli/generate_code.dart';
 void main(List<String> arguments) {
   if (arguments.isEmpty) {
     print('');
-    print(' ercode_cli');
+    print(' ercode');
     print('');
-    print('    init \t\t\t to init ercode generator');
-    print('    create <folde/generator.json> \t to generate code');
+    print('   init \t\t\t to init ercode generator');
+    print('   create <folde/generator.json> \t to generate code');
     print('');
     return;
   }

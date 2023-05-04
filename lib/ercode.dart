@@ -31,6 +31,7 @@ initProject() async {
     'pub add image_picker:^0.8.6+1',
     'pub add image_crop:^0.4.1',
     'pub add flutter_easyloading:^3.0.5',
+    'pub add path:^1.8.3'
   ];
 
   for (final script in deppendecies) {
