@@ -1,0 +1,25 @@
+name: ercode_cli
+description: Flutter app generator
+version: 1.0.0
+# homepage: https://www.example.com
+
+environment:
+  sdk: ">=2.18.6 <3.0.0"
+
+bin:
+  ercode: bin/ercode.dart
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.16.0
+
+dependencies:
+  ansicolor: ^2.0.1
+  dart_style: ^2.2.4
+  path: ^1.8.3
+  pubspec: ^2.3.0
+  recase: ^4.1.0
+
+executables:
+  ercode: ercode_cli
+  ercode_cli: ercode_cli
