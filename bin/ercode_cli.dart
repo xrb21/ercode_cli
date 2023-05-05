@@ -5,19 +5,25 @@ import 'package:ercode_cli/generate_code.dart';
 
 void main(List<String> arguments) {
   if (arguments.isEmpty) {
-    print('');
-    print(' ercode');
-    print('');
-    print('   init \t\t\t to init ercode generator');
-    print('   create <folde/generator.json> \t to generate code');
-    print('');
+    showInfo();
     return;
   }
 
   String command = arguments[0];
   if (command == 'init') {
     initProject();
-  } else if (command == 'create') {
+  } else if (command == 'generate') {
     generateCode(arguments);
+  } else {
+    showInfo();
   }
+}
+
+void showInfo() {
+  print('');
+  print(' ercode');
+  print('');
+  print('   init \t\t\t\t to init ercode generator');
+  print('   generate <folder/generator.json> \t to generate code');
+  print('');
 }

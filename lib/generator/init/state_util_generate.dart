@@ -19,7 +19,7 @@ class StateUtilGenerate {
     String template = stateUtil();
     final file = File('${baseDir.path}/$filename.dart');
     if (file.existsSync()) {
-      print('File init: ${file.path} is exists');
+      //print('File init: ${file.path} is exists');
     }
     File(file.path).createSync(recursive: true);
     file.writeAsStringSync(template);

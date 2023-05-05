@@ -20,8 +20,7 @@ import 'package:ercode_cli/generator/init/widgets/text_info_generate.dart';
 import 'generator/init/validator_generate.dart';
 
 initProject() async {
-  print('init project');
-
+  print('\nstart init project......\n');
   //install deppendecy packages
   final deppendecies = [
     'pub add dio:^4.0.6',
@@ -38,11 +37,15 @@ initProject() async {
     final cmd = script.split(" ");
     final result = await Process.run('flutter', cmd);
     if (result.exitCode != 0) {
-      print('Failed to add package: ${result.stderr}');
+      //print('Failed to add package: ${result.stderr}');
     } else {
       print('Package $script added successfully!');
     }
   }
+
+  //append stete_utils & flutter loading in main.dart
+  appendImportMain();
+  appendMainConfig();
 
   //init file helpers
   StateUtilGenerate().generate();
@@ -64,4 +67,53 @@ initProject() async {
   TextInfoGenerate().generate();
   //models
   ResponseDataGenerate().generate();
+
+  print('\ninit project finish......\n');
+}
+
+void appendImportMain() {
+  final filePath = 'lib/main.dart';
+  // Read the contents of the file
+  final file = File(filePath);
+  String contents = file.readAsStringSync();
+  if (contents
+      .contains('package:flutter_easyloading/flutter_easyloading.dart')) {
+    return;
+  }
+
+  // Find the index of the last import statement
+  final lastImportIndex = contents.lastIndexOf('import ');
+
+  String importFile = """ 
+  import 'package:flutter_easyloading/flutter_easyloading.dart';
+  import 'helpers/state_util.dart';
+  """;
+  // Insert the string after the last import statement
+  contents =
+      contents.replaceRange(lastImportIndex, lastImportIndex, importFile);
+
+  // Write the modified contents back to the file
+  file.writeAsStringSync(contents);
+}
+
+void appendMainConfig() {
+  final file = File('lib/main.dart');
+  String originalContent = file.readAsStringSync();
+
+  if (originalContent.contains('navigatorKey: Get.navigatorKey')) {
+    return;
+  }
+
+  // Locate the position of the last curly brace before the end of MaterialApp method
+  final materialAppIndex = originalContent.indexOf('MaterialApp(');
+
+  // Build the desired string to append
+  final newString =
+      '\n navigatorKey: Get.navigatorKey, \n builder: EasyLoading.init(),';
+
+  originalContent = originalContent.replaceRange(
+      materialAppIndex + 12, materialAppIndex + 12, newString);
+
+  // Write the modified content back to the file
+  file.writeAsStringSync(originalContent);
 }

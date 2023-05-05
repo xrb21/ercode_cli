@@ -19,7 +19,7 @@ class ResponseDataGenerate {
     String template = responseData();
     final file = File('${baseDir.path}/$filename.dart');
     if (file.existsSync()) {
-      print('File: ${file.path} is exists');
+      //print('File: ${file.path} is exists');
       return;
     }
     File(file.path).createSync(recursive: true);

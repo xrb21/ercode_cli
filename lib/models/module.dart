@@ -4,7 +4,6 @@ class Module {
   final String name;
   final String api;
   final String modelName;
-  final List<String> except;
   final List<String> only;
   List<Field>? fields;
 
@@ -13,7 +12,6 @@ class Module {
     required this.api,
     required this.modelName,
     this.fields,
-    required this.except,
     required this.only,
   });
 
@@ -32,7 +30,6 @@ class Module {
       name: name,
       api: map['api'] ?? map['name'],
       modelName: map['modelName'] ?? name,
-      except: except,
       only: only,
     );
 

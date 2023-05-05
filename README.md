@@ -1,6 +1,6 @@
 # Ercode CLI
 
-The package is used to generate CRUD code in Flutter, complete with models and repositories. The generation process is based on a JSON config file.
+Ercode CLI is an application to facilitate the process of creating Flutter applications faster, easier, and more simple. Ercode CLI will generate a module's code based on a JSON configuration.
 
 ### Installation
 
@@ -8,8 +8,11 @@ The package is used to generate CRUD code in Flutter, complete with models and r
 // install
 pub global activate ercode_cli 
 
-// activate package
+// or with flutter
 flutter pub global activate ercode_cli
+
+// command use
+ercode
 ```
 
 ### Init Generator
@@ -17,38 +20,15 @@ flutter pub global activate ercode_cli
 ``` 
 ercode init
 ```
-
-##### add config pada material app di file `lib/main.dart`
-
+Setting URL API and token(optional) in file `lib/helpers/constants.dart` :
 ```
-navigatorKey: Get.navigatorKey,
-builder: EasyLoading.init(),
+const baseUrl = '';
+const apiToken = '';
 ```
 
-example:
-```
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Book',
-      debugShowCheckedModeBanner: false,
-      navigatorKey: Get.navigatorKey, // add this
-      builder: EasyLoading.init(), // add this
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const BookView(),
-    );
-  }
-}
-```
 ### Generate Code
 
-example create module book with json config at `generator/book.json` :
+example create module <b>book</b> with json config at `generator/book.json` :
 
 ```
 {
@@ -74,24 +54,17 @@ example create module book with json config at `generator/book.json` :
         },
         {
             "name": "author",
-            "type": "String",
-            "input": "text",
             "list": true
         },
         {
-            "name": "genre",
-            "type": "String",
-            "input": "text"
+            "name": "genre"
         },
         {
-            "name": "release_year",
-            "type": "String",
-            "input": "text"
+            "name": "release_year"
         },
         {
-            "name": "description",
-            "type": "String",
-            "input": "text"
+            "name": "description"
+            
         }
     ]
 }
@@ -100,5 +73,24 @@ example create module book with json config at `generator/book.json` :
 
 to generate code run command:
 ```
-ercode create generator/book.json
+ercode generate generator/book.json
 ```
+
+#### Paramaters Module
+| Key       | Required  | Default       | Description   |   
+| --------  | -------   | -------       | -------       |
+| name      | true      |               | Module name   |
+| api       |           | same with name| endpoint API  |
+| model     |           | same with name| Model name    |
+| only      |           |               | The list of modules that will be generated: `model, repository, list, add, detail`. If this is empty, then all of them will be generated.   |
+| fields    | true           |          | List of fields that will be generated. Please see the `Field` parameters for details.   |
+
+#### Paramaters Field
+| Key       | Required  | Default       | Description   |   
+| --------  | -------   | -------       | -------       |
+| name      | true      |               | Field name   |
+| type      | true      | String        | Data types in Flutter : `String, int, bool`  |
+| input     |           | text          | Type of field on create page: `text, image`    |
+| hidden   |           | false         | To indicate that this `field` will not appear on the create page |
+| primary   |           | false         | Indicating this field as primary key  |
+| list    |           |  false      |  Indicating this field will be shown on the list page   |

@@ -2,8 +2,7 @@
 import 'dart:io';
 
 import 'package:ercode_cli/helpers/extension.dart';
-
-import '../../templates/init/helpers/Validator.dart';
+import 'package:ercode_cli/templates/init/helpers/validator.dart';
 
 class ValidatorGenerate {
   ValidatorGenerate();
@@ -20,7 +19,7 @@ class ValidatorGenerate {
     String template = validator();
     final file = File('${baseDir.path}/$filename.dart');
     if (file.existsSync()) {
-      print('File init: ${file.path} is exists');
+      //print('File init: ${file.path} is exists');
       return;
     }
     File(file.path).createSync(recursive: true);
