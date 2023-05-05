@@ -6,7 +6,7 @@ Ercode CLI is an application to facilitate the process of creating Flutter appli
 
 ```
 // install
-pub global activate ercode_cli 
+dart pub global activate ercode_cli 
 
 // or with flutter
 flutter pub global activate ercode_cli
