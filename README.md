@@ -60,7 +60,8 @@ example create module <b>book</b> with json config at `generator/book.json` :
             "name": "genre"
         },
         {
-            "name": "release_year"
+            "name": "release_year",
+            "type": "int"
         },
         {
             "name": "description"

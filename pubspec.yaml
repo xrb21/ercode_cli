@@ -1,6 +1,6 @@
 name: ercode_cli
-description: Ercode CLI is an application to facilitate the process of creating Flutter applications faster, easier, and more simple. Ercode CLI will generate a module's code based on a JSON configuration.
-version: 1.0.2
+description: Ercode CLI is an application to facilitate the process of creating Flutter applications faster, easier, and more simple.
+version: 1.0.2+1
 repository: https://github.com/xrb21/ercode_cli
 
 environment:
